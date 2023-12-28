@@ -7,23 +7,23 @@ function Input({ todo, setTodo, completed, setCompleted }) {
   let [description, setDescription] = useState('');
   let [getTodo, setgetTodo] = useState(null);
 
-  const handleDrop = (e) => {
+  const handleDropDown = (e) => {
     let val = e.target.innerText;
     setCompleted(val=== 'Completed' ? 'Not Completed' : 'Completed');
   };
 
   const handleClick = () => {
     if (getTodo) {
-      // Editing existing todo
+     
       setTodo((prevTodos) =>
-        prevTodos.map((t) =>
-          t.id === getTodo.id ? { ...t, title, description } : t
+        prevTodos.map((a) =>
+          a.id === getTodo.id ? { ...a, title, description } : a   // Editing existing card
         )
       );
       setgetTodo(null);
     } else {
      
-      let id = todo.length ? todo[todo.length - 1].id + 1 : 1; // Adding new todo by condition
+      let id = todo.length ? todo[todo.length - 1].id + 1 : 1; // adding new todo cards
       let newArr = [...todo];
       newArr.push({
         id,
@@ -33,9 +33,9 @@ function Input({ todo, setTodo, completed, setCompleted }) {
       setTodo(newArr);
     }
 
-    // Reset input fields
-    setTitle('');
-    setDescription('');
+  
+    setTitle('');               //clear the title
+    setDescription('');         //clear the description
   };
 
   return (
@@ -89,8 +89,8 @@ function Input({ todo, setTodo, completed, setCompleted }) {
                   {completed}
                 </button>
                 <ul className="dropdown-menu">
-                  <a onClick={handleDrop}>Completed</a>
-                  <a onClick={handleDrop}>Not Completed</a>
+                  <a onClick={handleDropDown}>Completed</a>
+                  <a onClick={handleDropDown}>Not Completed</a>
                 </ul>
               </div>
             </span>
